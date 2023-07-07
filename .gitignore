@@ -126,7 +126,7 @@ dmypy.json
 bin
 obj
 appsettings.json
-local.settings.json
+
 
 # Azurite artifacts
 __blobstorage__
@@ -139,5 +139,4 @@ __azurite_db*__.json
 # hourse-hd-firebase-adminsdk-v7fns-5ed4f7e8b6.json
 .vscode
 
-host.json
-local.settings.json
+
