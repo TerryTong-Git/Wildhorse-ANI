@@ -1,0 +1,17 @@
+# DO NOT include azure-functions-worker in this file
+# The Python Worker is managed by Azure Functions platform
+# Manually managing azure-functions-worker may cause unexpected issues
+
+azure-functions
+Flask
+Pillow
+Firebase-admin
+opencv-python
+tensorflow-cpu==2.8.1
+numpy
+scipy
+scikit-image
+libsvm
+keras
+pydom
+# git+https://github.com/umang-singhal/pydom.git
