@@ -10,10 +10,10 @@ import cv2
 np.set_printoptions(suppress=True)
 
 # Load the model
-model = load_model("horseflask/lib/models/keras_model.h5", compile=False)
+model = load_model("/home/site/wwwroot/HorseFlask/lib/models/keras_model.h5", compile=False)
 
 # Load the labels
-class_names = open("horseflask/lib/models/labels.txt", "r").readlines()
+class_names = open("/home/site/wwwroot/HorseFlask/lib/models/labels.txt", "r").readlines()
 # /home/site/wwwroot/HorseFlask/lib/models/labels.txt
 # Create the array of the right shape to feed into the keras model
 # The 'length' or number of images you can put into the array is
