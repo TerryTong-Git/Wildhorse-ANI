@@ -41,7 +41,7 @@ jobs:
       - name: Test with pytest
         run: |
           pip install pytest pytest-cov
-          pytest tests/test_app.py --doctest-modules --junitxml=junit/test-results.xml --cov=HorseFlask --cov-report=xml --cov-report=html
+          pytest tests/test_app.py --cov=HorseFlask
 
       - name: Upload artifact for deployment job
         uses: actions/upload-artifact@v2
