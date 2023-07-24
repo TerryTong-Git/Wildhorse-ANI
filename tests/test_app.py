@@ -1,9 +1,4 @@
 import pytest
-from io import BytesIO
-import io
-from PIL import Image
-import os
-import sys
 import json
 import re
 
@@ -62,13 +57,13 @@ def test_find(client,image_file):
         for i in horse_data:
             image = i[0]
             confidence = i[1]
-            assert is_base64_image(image) == True
+            assert is_base64_image(image) is True
             assert type(confidence) == float
         
         for i in other_data:
             image = i[0]
             confidence = i[1]
-            assert is_base64_image(image) == True
+            assert is_base64_image(image) is True
             assert type(confidence) == float
 
         assert response.status_code == 200
