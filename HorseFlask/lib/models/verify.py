@@ -11,11 +11,11 @@ np.set_printoptions(suppress=True)
 
 # Load the model
 path = os.getcwd()
-model_path = os.path.join(path, 'HorseFlask\lib\models\keras_model.h5')
+model_path = os.path.join(path, 'HorseFlask/lib/models/keras_model.h5')
 model = load_model(model_path, compile=False)
 
 # Load the labels
-labels_path = os.path.join(path, 'HorseFlask\lib\models\labels.txt')
+labels_path = os.path.join(path, 'HorseFlask/lib/models/labels.txt')
 class_names = open(labels_path, "r").readlines() # noqa: SIM115
 # /home/site/wwwroot/HorseFlask/lib/models/labels.txt
 # Create the array of the right shape to feed into the keras model
