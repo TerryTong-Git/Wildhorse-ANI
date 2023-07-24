@@ -14,4 +14,5 @@ scikit-image
 libsvm
 keras
 pydom
+image-quality @ git+https://github.com/TerryTong-Git/image-quality.git@master
 # git+https://github.com/umang-singhal/pydom.git

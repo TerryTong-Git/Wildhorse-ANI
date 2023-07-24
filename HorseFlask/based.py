@@ -1,8 +1,5 @@
-import firebase_admin
-from firebase_admin import credentials
 from firebase_admin import firestore
 import requests
-import os
 
 # Use a service account.
 def get_from_firebase(id):
