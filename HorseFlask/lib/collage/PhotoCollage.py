@@ -1,12 +1,8 @@
 '''
 
 '''
-import re
-import argparse
 import os
-import random
 import math
-from PIL.ExifTags import TAGS
 from PIL import ImageOps
 from PIL import Image, ImageDraw, ImageFont
 
@@ -24,10 +20,10 @@ def linear_partition(seq, k, dataList = None):
         return []
     n = len(seq) - 1
     if k > n:
-        return map(lambda x: [x], seq)
+        return ([x] for x in seq)
     table, solution = linear_partition_table(seq, k)
     k, ans = k-2, []
-    if dataList == None or len(dataList) != len(seq):
+    if dataList is None or len(dataList) != len(seq):
         while k >= 0:
             ans = [[seq[i] for i in range(solution[n-1][k]+1, n+1)]] + ans
             n, k = solution[n-1][k], k-1
@@ -56,8 +52,8 @@ def linear_partition_table(seq, k):
 
 # end partition problem algorithm
 
-def clamp(v,l,h):
-    return l if v < l else h if v > h else v
+def clamp(v,length,h):
+    return length if v < length else h if v > h else v
 
 # takes list of PIL image objects and returns the collage as a PIL image object
 def makeCollage(imgList, spacing = 0, antialias = False, background=(0,0,0), aspectratiofactor = 0):
@@ -70,14 +66,11 @@ def makeCollage(imgList, spacing = 0, antialias = False, background=(0,0,0), asp
         
     # first upscale all images according to the maximum height of any image (downscaling would result in a terrible quality image if a very short image was included in the batch)
     maxHeight = max([img.height for img in imgList])
-    if antialias:
-        imgList = [img.resize((int(img.width / img.height * maxHeight),maxHeight), Image.ANTIALIAS) if img.height < maxHeight else img for img in imgList]
-    else:
-        imgList = [img.resize((int(img.width / img.height * maxHeight),maxHeight)) if img.height < maxHeight else img for img in imgList]
+    imgList = [(img.resize((int(img.width / img.height * maxHeight), maxHeight), Image.ANTIALIAS) if img.height < maxHeight else img) for img in imgList] if antialias else [(img.resize((int(img.width / img.height * maxHeight), maxHeight)) if img.height < maxHeight else img) for img in imgList]
     
     # generate the input for the partition problem algorithm
     # need list of aspect ratios and number of rows (partitions)
-    imgHeights = [img.height for img in imgList]
+    [img.height for img in imgList]
     totalWidth = sum([img.width for img in imgList])
     avgWidth = totalWidth / len(imgList)
     targetWidth = avgWidth * math.sqrt(len(imgList) * aspectratiofactor)
@@ -109,9 +102,9 @@ def makeCollage(imgList, spacing = 0, antialias = False, background=(0,0,0), asp
     w,h = (minRowWidth, sum(rowHeights) + spacing * (numRows - 1))
     
     if background == (0,0,0):
-        background += tuple([0])
+        background += (0,)
     else:
-        background += tuple([255])
+        background += (255,)
     outImg = Image.new("RGBA", (w,h), background)
     xPos,yPos = (0,0)
     
@@ -182,7 +175,7 @@ def collage_maker(foldername, output_name, width,height,shuffle, gapsize, aspect
         # Need to explicitly tell PIL to rotate image if EXIF orientation data is present
         exif = img.getexif()
         # Remove all exif tags
-        for k in exif.keys():
+        for k in exif:
             if k != 0x0112:
                 exif[k] = None  # If I don't set it to None first (or print it) the del fails for some reason.
                 del exif[k]

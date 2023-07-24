@@ -1,4 +1,4 @@
-from ..imquality import brisque
+import imquality.brisque as brisque
 from skimage import io, img_as_float
 
 #score based on sharpness

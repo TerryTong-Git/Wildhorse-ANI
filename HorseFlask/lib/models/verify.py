@@ -2,18 +2,21 @@
 from keras.models import load_model  # TensorFlow is required for Keras to work
 from PIL import Image, ImageOps  # Install pillow instead of PIL
 import numpy as np
+import os
 # from dom import DOM
-import cv2
 
 
 # Disable scientific notation for clarity
 np.set_printoptions(suppress=True)
 
 # Load the model
-model = load_model("/home/site/wwwroot/HorseFlask/lib/models/keras_model.h5", compile=False)
+path = os.getcwd()
+model_path = os.path.join(path, 'HorseFlask\lib\models\keras_model.h5')
+model = load_model(model_path, compile=False)
 
 # Load the labels
-class_names = open("/home/site/wwwroot/HorseFlask/lib/models/labels.txt", "r").readlines()
+labels_path = os.path.join(path, 'HorseFlask\lib\models\labels.txt')
+class_names = open(labels_path, "r").readlines() # noqa: SIM115
 # /home/site/wwwroot/HorseFlask/lib/models/labels.txt
 # Create the array of the right shape to feed into the keras model
 # The 'length' or number of images you can put into the array is

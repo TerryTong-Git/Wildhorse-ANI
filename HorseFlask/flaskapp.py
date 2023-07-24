@@ -1,12 +1,10 @@
 from flask import Flask, send_file
-import azure.functions
 from flask import request
 from .lib.collage.PhotoCollage import collage_maker
 from .based import get_from_firebase
 from .lib.models.verify import class_n_conf
 from .lib.models.score import quality
 from .lib.models.find import detection
-import os
 from io import BytesIO
 import json
 

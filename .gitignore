@@ -138,3 +138,5 @@ __azurite_db*__.json
 .vscode
 
 hourse-hd-firebase-adminsdk-v7fns-5ed4f7e8b6.json
+
+.ruff_cache
